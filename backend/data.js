@@ -1,23 +1,22 @@
 import bcrypt from 'bcryptjs';
 
 const data = {
-    users:[
+    users: [
         {
-            name:'Apolo Oxosse',
-            email:'admin@example.com',
+            name: 'Apolo Oxosse',
+            email: 'admin@example.com',
             password: bcrypt.hashSync('1234', 8),
             isAdmin: true,
         },
         {
-            name:'John',
-            email:'user@example.com',
+            name: 'John',
+            email: 'user@example.com',
             password: bcrypt.hashSync('1234', 8),
             isAdmin: false,
         },
     ],
     products: [
         {
-            _id: "1",
             name: "Nike Slim Shirt",
             category: "Shirt",
             image: "/image/p1.jpg",
@@ -29,7 +28,6 @@ const data = {
             description: "high quality product"
         },
         {
-            _id: "2",
             name: "Adidas Shirt",
             category: "Shirt",
             image: "/image/p2.jpg",
@@ -41,7 +39,6 @@ const data = {
             description: "high quality product"
         },
         {
-            _id: "3",
             name: "Laciste Free Shirt",
             category: "Shirt",
             image: "/image/p3.jpg",
@@ -53,7 +50,6 @@ const data = {
             description: "high quality product"
         },
         {
-            _id: "4",
             name: "Nike Slim Pants",
             category: "Pants",
             image: "/image/p4.jpg",
@@ -65,7 +61,6 @@ const data = {
             description: "high quality product"
         },
         {
-            _id: "5",
             name: "Puma Slim Pant",
             category: "Pants",
             image: "/image/p5.jpg",
@@ -73,11 +68,10 @@ const data = {
             countInStock: 10,
             brand: "Puma",
             rating: 2,
-            numReviews:10,
+            numReviews: 10,
             description: "high quality product"
         },
         {
-            _id: "6",
             name: "Adidas Slim Pant",
             category: "Pants",
             image: "/image/p6.jpg",

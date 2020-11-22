@@ -1,7 +1,7 @@
 import express from 'express';
-import data from './data.js';
 import mongoose from 'mongoose';
 import userRouter from './Routers/userRouter.js';
+import productRouter from './Routers/productRouter.js';
 
 const app = express();
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/marizon-app', {
@@ -10,20 +10,18 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/marizon-app', {
     useCreateIndex: true,
 })
 
-app.get('/api/products/:id', (req, res) => {
-    const product = data.products.find(x => x._id === req.params.id);
-    if (product) {
-        res.send(product);
-    } else {
-        res.status(404).send({ message: 'Product not Found' })
-    }
-});
 
+
+/*
+// use to local file data.js
 app.get('/api/products', (req, res) => {
     res.send(data.products);
 });
+*/
 
-app.use('/api/users', userRouter)
+app.use('/api/users', userRouter);
+app.use('/api/products', productRouter);
+
 app.get('/', (req, res) => {
     res.send('Server is ready');
 });
