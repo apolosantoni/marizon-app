@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 export default function PlaceOrderScreen(props) {
 
-    const dispatch = useDispatch();
+
     const cart = useSelector((state) => state.cart);
     if (!cart.paymentMethod) {
         props.history.push('/payment')
