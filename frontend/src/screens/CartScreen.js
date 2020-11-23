@@ -21,7 +21,7 @@ export default function CartScreen(props) {
         dispatch(removeFromCart(id));
     };
 
-    const checkoutHandle = () => { 
+    const checkoutHandle = () => {
         props.history.push('/singin?redirect=shipping');
     };
     return (
@@ -46,10 +46,10 @@ export default function CartScreen(props) {
                                             </div>
                                             <div>
                                                 <select value={item.qty}
-                                                    onChange={(e) => dispatch(addToCart(item.product, Number (e.target.value)) )}
+                                                    onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
                                                 >
                                                     {
-                                                        [...Array(item.countInStock).keys()].map((x) => ( <option key={x + 1} value={x + 1}>{x + 1}</option>))
+                                                        [...Array(item.countInStock).keys()].map((x) => (<option key={x + 1} value={x + 1}>{x + 1}</option>))
                                                     }
                                                 </select>
                                             </div>
@@ -73,13 +73,13 @@ export default function CartScreen(props) {
                             <h2>
                                 Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : R$
                                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-                                
+
                             </h2>
                         </li>
                         <li>
-                            <button className="primary block" type="button" 
-                            onClick={checkoutHandle}
-                            disabled={cartItems.length === 0}
+                            <button className="primary block" type="button"
+                                onClick={checkoutHandle}
+                                disabled={cartItems.length === 0}
                             >
                                 Checkout
                             </button>
