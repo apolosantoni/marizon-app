@@ -22,7 +22,7 @@ export default function CartScreen(props) {
     };
 
     const checkoutHandle = () => {
-        props.history.push('/singin?redirect=shipping');
+        props.history.push('/signin?redirect=shipping');
     };
     return (
         <div className="row top">
@@ -89,4 +89,4 @@ export default function CartScreen(props) {
             </div>
         </div>
     );
-}
+};
