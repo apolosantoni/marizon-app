@@ -31,4 +31,22 @@ orderRouter.post(
     })
 );
 
+orderRouter.get(
+    '/:id',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const order = await Order.findById(req.params.id);
+        const user = req.headers.user_id;
+        if (order) {
+            if (order.user._id == user) {
+                res.send(order);
+            } else {
+                res.status(404).send({ message: 'Usuario nao autorizado' });
+            }
+        } else {
+            res.status(404).send({ message: 'Order Not Found' });
+        }
+    })
+);
+
 export default orderRouter;
