@@ -5,11 +5,21 @@ import { isAuth } from '../utils.js';
 
 const orderRouter = express.Router();
 
+orderRouter.get(
+    '/mine',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        //console.log("RouterGetMine : " + req)
+        const orders = await Order.find({ user: req.headers.user_id });
+        res.send(orders);
+    })
+);
+
 orderRouter.post(
     '/',
     isAuth,
     expressAsyncHandler(async (req, res) => {
-
+        console.log("RouterPost : " + { req });
         if (req.body.orderItems.length === 0) {
             res.status(400).send({ message: 'Cart is empty' });
         } else {
@@ -22,6 +32,7 @@ orderRouter.post(
                 shippingPrice: req.body.shippingPrice,
                 taxPrice: req.body.taxPrice,
                 totalPrice: req.body.totalPrice,
+                //user: req.user._id,
                 user: req.headers.user_id,
             });
 
@@ -37,12 +48,19 @@ orderRouter.get(
     expressAsyncHandler(async (req, res) => {
         const order = await Order.findById(req.params.id);
         const user = req.headers.user_id;
+        /*
+               if (order) {
+                   if (order.user._id == user) {
+                       res.send(order);
+                   } else {
+                       res.status(404).send({ message: 'Usuario nao autorizado' });
+                   }
+               } else {
+                   res.status(404).send({ message: 'Order Not Found' });
+               }
+               */
         if (order) {
-            if (order.user._id == user) {
-                res.send(order);
-            } else {
-                res.status(404).send({ message: 'Usuario nao autorizado' });
-            }
+            res.send(order);
         } else {
             res.status(404).send({ message: 'Order Not Found' });
         }
@@ -70,5 +88,6 @@ orderRouter.put(
         }
     })
 );
+
 
 export default orderRouter;
