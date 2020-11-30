@@ -21,8 +21,8 @@ export default function ProductListScreen(props) {
     useEffect(() => {
         if (successCreate) {
             dispatch({ type: PRODUCT_CREATE_RESET });
-            //props.history.push(`/product/${createdProduct._id}/edit`);
-            props.history.push(`/productlist`);
+            props.history.push(`/product/${createdProduct._id}/edit`);
+            //props.history.push(`/productlist`);
         }
         dispatch(listProducts());
     }, [createdProduct, dispatch, props.history, successCreate])
@@ -62,7 +62,7 @@ export default function ProductListScreen(props) {
                                     <td>{product.category}</td>
                                     <td>{product.brand}</td>
                                     <td>
-                                        <button type="button" className="small" onClick={() => props.history.push(`/products/${product._id}/edit`)}>Edit</button>
+                                        <button type="button" className="small" onClick={() => props.history.push(`/product/${product._id}/edit`)}>Edit</button>
                                         <button type="button" className="small" onClick={() => deleteHandler(product)}>Delete</button>
                                     </td>
                                 </tr>

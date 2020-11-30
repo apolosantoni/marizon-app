@@ -10,6 +10,7 @@ import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import OrderScreen from './screens/OrderScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -75,6 +76,7 @@ function App() {
           <AdminRouter path="/productlist" component={ProductListScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/product/:id' component={ProductScreen} exact />
+          <Route path='/product/:id/edit' component={ProductEditScreen} exact />
           <Route path='/shipping' component={ShippingAddressScreen} />
           <Route path='/payment' component={PaymentMethodScreen} />
           <Route path='/placeorder' component={PlaceOrderScreen} />

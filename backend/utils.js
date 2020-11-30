@@ -41,7 +41,7 @@ export const isAdmin = (req, res, next) => {
     if (req.res.user && req.res.user.isAdmin) {
         next();
     } else {
-        console.log("req isAdmin : ", req.res.user);
+        //console.log("req isAdmin : ", req.res.user);
         res.status(401).send({ message: 'Invalid Admin Token' });
     }
 };
