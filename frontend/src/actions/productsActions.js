@@ -11,16 +11,23 @@ import {
 } from "../constants/productsConstants"
 import Axios from 'axios';
 
+function mensagem(error) {
+    if (error.response && error.response.data.message) {
+        return "Data :" + error.response.data.message;
+    } else {
+        return "Error :" + error.message;
+    }
+}
 export const listProducts = () => async (dispacth) => {
     dispacth({
         type: PRODUCT_LIST_REQUEST,
     });
 
     try {
-        const { data } = await Axios.get('api/products');
+        const { data } = await Axios.get('/api/products');
         dispacth({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
-        dispacth({ type: PRODUCT_LIST_FAIL, payload: error.message });
+        dispacth({ type: PRODUCT_LIST_FAIL, payload: mensagem(error) });
     }
 };
 
@@ -32,9 +39,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
-            payload: error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message,
+            payload: mensagem(error)
         });
 
     }
@@ -58,10 +63,7 @@ export const createProduct = () => async (dispatch, getState) => {
             payload: data.product,
         });
     } catch (error) {
-        const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message;
-        dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
+
+        dispatch({ type: PRODUCT_CREATE_FAIL, payload: mensagem(error) });
     }
 };
