@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { signout } from './actions/userActions';
+import AdminRouter from './components/AdminRouter';
 import PrivateRoute from './components/PrivateRoute';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
@@ -50,21 +51,26 @@ function App() {
                     <li><Link to="#signout" onClick={singoutHandle}>Sign Out</Link></li>
                   </ul>
                 </div>
-              ) : (
-                  <Link to="/signin">Sing In</Link>
-                )
-            }
-
+              ) : (<Link to="/signin">Sing In</Link>)}
+            {userInfo && userInfo.isAdmin && (
+              <div className="dropdown">
+                <Link to="#admin">Admin <i className="fa fa-caret-down" ></i> </Link>
+                <ul className="dropdown-content">
+                  <li><Link to="/dashboard" >Dashboard</Link></li>
+                  <li><Link to="/productlist" >Product List</Link></li>
+                  <li><Link to="/orderlist" >Orders List</Link></li>
+                  <li><Link to="/userlist" >User List</Link></li>
+                </ul>
+              </div>
+            )}
           </div>
         </header>
         <main>
           <Route path='/' component={HomeScreen} exact />
           <Route path='/signin' component={SigninScreen} />
           <Route path='/register' component={RegisterScreen} />
-          <PrivateRoute
-            path="/profile"
-            component={ProfileScreen}
-          ></PrivateRoute>
+          <PrivateRoute path="/profile" component={ProfileScreen} />
+          <AdminRouter path="/profile" component={ProfileScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/shipping' component={ShippingAddressScreen} />
