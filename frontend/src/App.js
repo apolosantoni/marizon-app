@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { signout } from './actions/userActions';
+import PrivateRoute from './components/PrivateRoute';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
@@ -60,7 +61,10 @@ function App() {
           <Route path='/' component={HomeScreen} exact />
           <Route path='/signin' component={SigninScreen} />
           <Route path='/register' component={RegisterScreen} />
-          <Route path='/profile' component={ProfileScreen} />
+          <PrivateRoute
+            path="/profile"
+            component={ProfileScreen}
+          ></PrivateRoute>
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/shipping' component={ShippingAddressScreen} />

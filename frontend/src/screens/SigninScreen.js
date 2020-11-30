@@ -13,7 +13,7 @@ export default function SigninScreen(props) {
         ? props.location.search.split('=')[1]
         : '/';
 
-    const userSignin = useSelector((state) => state.userSignin);
+    const userSignin = useSelector(state => state.userSignin);
     const { userInfo, loading, error } = userSignin;
 
     const dispatch = useDispatch();
